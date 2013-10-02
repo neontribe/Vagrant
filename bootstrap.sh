@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+apt-get update
+
 # If phpmyadmin does not exist
 if [ ! -f /etc/phpmyadmin/config.inc.php ];
 then
@@ -25,15 +27,15 @@ then
 	echo 'dbconfig-common dbconfig-common/app-password-confirm password vagrant' | debconf-set-selections
 	echo 'dbconfig-common dbconfig-common/app-password-confirm password vagrant' | debconf-set-selections
 	echo 'dbconfig-common dbconfig-common/password-confirm password vagrant' | debconf-set-selections
-
-	echo 'mysql-server-5.5 mysql-server/root_password password vagrant' | debconf-set-selections
-	echo 'mysql-server-5.5 mysql-server/root_password_again password vagrant' | debconf-set-selections
 	
 	apt-get -y install phpmyadmin
 fi
 
-apt-get update
-apt-get install -y apache2 php5-mysql php-pear mysql
+# do mysql setup
+echo mysqlserver.sh
+
+#setup everything else
+apt-get install -y apache2 php-pear
 
 sudo a2enmod rewrite
 /etc/init.d/apache2 restart
@@ -41,20 +43,6 @@ sudo a2enmod rewrite
 pear channel-discover pear.drush.org
 pear install drush/drush
 drush > /dev/null
-
-if [ ! -f /var/log/databasesetup ];
-then
-	echo "CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'vagrant'" | mysql -uroot -pvagrant
-    echo "GRANT ALL PRIVILEGES ON * . * TO 'drupal'@'localhost'" | mysql -uroot -pvagrant
-    echo "flush privileges" | mysql -uroot -prootpass
-
-    touch /var/log/databasesetup
-	
-	#if [ -f /vagrant/data/initial.sql ];
-    #then
-    #    mysql -uroot -prootpass wordpress < /vagrant/data/initial.sql
-    #fi
-fi
 
 rm -rf /var/www
 ln -fs /vagrant /var/www
