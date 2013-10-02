@@ -1,1 +1,14 @@
 Vagrant
+=======
+
+# Vagrant versions
+
+The vagrant in the ubuntu repos is a little out of date at the time of writting this (10/2013).  These vagrant files work against vagrant 1.3.3.  Go here to get an upto date version: http://downloads.vagrantup.com/tags/v1.3.3 and then install it:
+
+    sudo dpkg -i vagrant_1.3.3_x86_64.deb
+
+This upgraded my vagrant install.
+
+# Quick start
+
+    vagrant up

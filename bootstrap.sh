@@ -33,28 +33,12 @@ then
 fi
 
 apt-get update
-apt-get install -y apache2 php5-mysql php-pear mysql
+apt-get install -y apache2 php5-mysql php-pear mysql-client
 
 sudo a2enmod rewrite
 /etc/init.d/apache2 restart
 
-pear channel-discover pear.drush.org
-pear install drush/drush
-drush > /dev/null
-
-if [ ! -f /var/log/databasesetup ];
-then
-	echo "CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'vagrant'" | mysql -uroot -pvagrant
-    echo "GRANT ALL PRIVILEGES ON * . * TO 'drupal'@'localhost'" | mysql -uroot -pvagrant
-    echo "flush privileges" | mysql -uroot -prootpass
-
-    touch /var/log/databasesetup
-	
-	#if [ -f /vagrant/data/initial.sql ];
-    #then
-    #    mysql -uroot -prootpass wordpress < /vagrant/data/initial.sql
-    #fi
-fi
+./bin/drupal.sh
 
 rm -rf /var/www
 ln -fs /vagrant /var/www
