@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # MYSQL Server
 if [ ! -f /etc/mysql/my.cnf ]; then
