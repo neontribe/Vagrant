@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sudo apt-get update
+sudo apt-get update
 
 # Apache, Mysql, PHP and PHPMyAdmin
 echo "Install LAMP"

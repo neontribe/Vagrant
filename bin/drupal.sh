@@ -44,10 +44,10 @@ if [ ! -d $DRUPAL_TARG ]; then
     fi
 
     echo "Fetching drupal"
-    echo sudo /usr/bin/drush dl --destination=$DRUPAL_TARG
-    sudo /usr/bin/drush dl --destination=$DRUPAL_TARG
+    sudo /usr/bin/drush -y dl --destination=`dirname $DRUPAL_TARG`
+    sudo mv `dirname $DRUPAL_TARG`/drupal-* $DRUPAL_TARG
     echo "Configuring drupal"
-    sudo drush --root=$DRUPAL_TARG site-install standard \
+    echo sudo drush -y --root=$DRUPAL_TARG site-install standard \
         --db-url=mysql://$DRUPAL_DB_USER:$DRUPAL_DB_PASS@localhost/$DRUPAL_DB_NAME \
         --site-name="$DRUPAL_SITE_NAME" \
         --account-name=$DRUPAL_ADMIN_NAME \
@@ -56,6 +56,8 @@ if [ ! -d $DRUPAL_TARG ]; then
     sudo find $DRUPAL_TARG -type d -exec chmod 775 {} \;
     sudo find $DRUPAL_TARG -type f -exec chmod 664 {} \;
 
-    sudo chown -R vagrant:vagrant $DRUPAL_TARG
+    sudo chown -R vagrant:vagrant $DRUPAL_TARG /home/vagrant/.drushrc
 
+    sudo mv /var/www /var/www.$$
+    sudo ln -sf $DRUPAL_TARG /var/www
 fi
