@@ -1,20 +1,28 @@
 #!/bin/bash
 
+if [ -z "$MYSQL_ROOTPASS" ]; then
+    source /vagrant/etc/lamp.inc
+fi
+
 # MYSQL Server
 if [ ! -f /etc/mysql/my.cnf ]; then
 
-    if [ -z "$MYSQL_ROOTPASS" ]; then
-        source /vagrant/etc/config.inc
-    fi
+    echo Installing mysql
 
     sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQL_ROOTPASS"
     sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MYSQL_ROOTPASS"
     sudo apt-get -y install mysql-server mysql-client
 
+else
+
+    echo Mysql already installed
+
 fi
 
 # Apache
 if [ ! -d /etc/apache2 ]; then
+
+    echo Installing apache
 
     sudo apt-get -y install apache2
 
@@ -38,18 +46,29 @@ if [ ! -d /etc/apache2 ]; then
 
     /etc/init.d/apache2 start
 
+else
+
+    echo Apache already installed
+
 fi
 
 # PHP
 if [ ! -d /etc/php5 ]; then
 
+    echo Installing PHP
+
     sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5
+
+else
+
+    echo PHP already installed
 
 fi
 
 # PHP My Admin
-if [ ! -f /etc/phpmyadmin/config.inc.php ];
-then
+if [ ! -f /etc/phpmyadmin/config.inc.php ]; then
+
+    echo Installing phpmyadmin
 
 	# Used debconf-get-selections to find out what questions will be asked
 	# This command needs debconf-utils
@@ -73,5 +92,10 @@ then
 	echo "dbconfig-common dbconfig-common/password-confirm password $MYSQL_ROOTPASS" | debconf-set-selections
 	
 	apt-get -y install phpmyadmin
+
+else
+
+    echo PHPMyAdmin already installed
+
 fi
 
