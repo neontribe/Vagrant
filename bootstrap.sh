@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
-apt-get update
+sudo apt-get update
 
 # Apache, Mysql, PHP and PHPMyAdmin
+echo "Install LAMP"
 /vagrant/bin/lamp.sh
+echo "Install Unix tools"
+/vagrant/bin/unixtools.sh
+echo "Install drupal"
+/vagrant/bin/drupal.sh
 
 
 # if [ ! -f /var/log/databasesetup ];
@@ -21,10 +26,6 @@ apt-get update
     # fi
 # fi
 
-# sudo a2enmod rewrite
-# /etc/init.d/apache2 restart
-
-# ./bin/drupal.sh
 
 # rm -rf /var/www
 # ln -fs /vagrant /var/www
