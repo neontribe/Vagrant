@@ -33,8 +33,7 @@ dbcheck=`mysql -u root -pvagrant --skip-column-names -s -e "show dataBASES LIKE 
 if [ -z $dbcheck ]; then
 
     echo "  Creating user and database"
-        echo "CREATE DATABASE $DRUPAL_DB_NAME" | mysql -uroot -p$MYSQL_ROOTPASS
-    fi
+    echo "CREATE DATABASE $DRUPAL_DB_NAME" | mysql -uroot -p$MYSQL_ROOTPASS
 
     echo "  Creating user"
     echo "CREATE USER '$DRUPAL_DB_USER'@'localhost' IDENTIFIED BY '$DRUPAL_DB_PASS'" | mysql -uroot -p$MYSQL_ROOTPASS
