@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
 
-sudo apt-get update
+CWD=`dirname $0`
+
+NOW=`date +%s`
+THEN=`date -r /var/cache/apt +%s`
+ELAPSED=$(($NOW - $THEN))
+if [ "$ELAPSED" -gt "604800" ]; then # Only do the apt-get update if it's more than a week old
+    sudo apt-get update
+fi
 
 # Apache, Mysql, PHP and PHPMyAdmin
 echo "Install LAMP"
-/vagrant/bin/lamp.sh
+$CWD/bin/lamp.sh
 echo "Install Unix tools"
-/vagrant/bin/unixtools.sh
+$CWD/bin/unixtools.sh
 echo "Install drupal"
-/vagrant/bin/drupal.sh
+$CWD/bin/drupal-pre.sh
+$CWD/bin/drupal.sh
+$CWD/bin/drupal-post.sh
 
 
 # if [ ! -f /var/log/databasesetup ];
