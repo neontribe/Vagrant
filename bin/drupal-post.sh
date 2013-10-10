@@ -10,8 +10,8 @@ if [ -z "$MYSQL_ROOTPASS" ]; then
     source $CWD/../etc/lamp.inc
 fi
 
-echo Resetting permissions
-if [ ! -d $DRUPAL_TARG ]; then
+if [ -d $DRUPAL_TARG ]; then
+    echo Resetting permissions
 
     sudo find $DRUPAL_TARG -type d -exec chmod 775 {} \;
     sudo find $DRUPAL_TARG -type f -exec chmod 664 {} \;
