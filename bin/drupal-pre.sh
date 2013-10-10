@@ -31,7 +31,7 @@ fi
 echo Checking checking for drupal database
 dbcheck=`mysql -u root -pvagrant --skip-column-names -s -e "show dataBASES LIKE 'drupal'"`
 if [ -z $dbcheck ]; then
-
+set -x
     echo "  Creating user and database"
     echo "CREATE DATABASE $DRUPAL_DB_NAME" | mysql -uroot -p$MYSQL_ROOTPASS
 
@@ -39,4 +39,5 @@ if [ -z $dbcheck ]; then
     echo "CREATE USER '$DRUPAL_DB_USER'@'localhost' IDENTIFIED BY '$DRUPAL_DB_PASS'" | mysql -uroot -p$MYSQL_ROOTPASS
     echo "GRANT ALL ON drupal.* TO '$DRUPAL_USER'@'localhost'" | mysql -uroot -p$MYSQL_ROOTPASS
     echo "flush privileges" | mysql -uroot -p$MYSQL_ROOTPASS
+set +x
 fi
