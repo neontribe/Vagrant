@@ -2,10 +2,6 @@
 
 CWD=`dirname $0`
 
-if [ -z "$DRUPAL_USER" ]; then
-    source /vagrant/etc/drupal.inc
-fi
-
 if [ -z "$MYSQL_ROOTPASS" ]; then
     source $CWD/../etc/lamp.inc
 fi
