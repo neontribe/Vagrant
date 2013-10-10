@@ -1,7 +1,9 @@
 #!/bin/bash
 
+CWD=`dirname $0`
+
 if [ -z "$MYSQL_ROOTPASS" ]; then
-    source /vagrant/etc/lamp.inc
+    source $CWD/../etc/lamp.inc
 fi
 
 # MYSQL Server
