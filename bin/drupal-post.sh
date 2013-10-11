@@ -21,3 +21,13 @@ if [ -d $DRUPAL_TARG ]; then
     sudo mv /var/www /var/www.$$
     sudo ln -sf $DRUPAL_TARG /var/www
 fi
+
+# clean up passwd file
+if [ -f $DRUPAL_PASS_FILE ]; then
+    echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    echo -n ">> Drupal Admin Password is"
+    cat $DRUPAL_ADMIN_PASS
+    echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+fi
+
+rm $DRUPAL_PASS_FILE
