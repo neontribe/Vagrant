@@ -22,6 +22,8 @@ if [ -d $DRUPAL_TARG ]; then
     sudo ln -sf $DRUPAL_TARG /var/www
 fi
 
+drush -r $DRUPAL_TARG -y up
+
 # clean up passwd file
 if [ -f $DRUPAL_PASS_FILE ]; then
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
