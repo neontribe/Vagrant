@@ -26,7 +26,7 @@ fi
 if [ -f $DRUPAL_PASS_FILE ]; then
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
     echo -n ">> Drupal Admin Password is"
-    cat $DRUPAL_ADMIN_PASS
+    cat $DRUPAL_ADMIN_FILE
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 fi
 
