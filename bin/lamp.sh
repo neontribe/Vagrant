@@ -59,7 +59,7 @@ if [ ! -d /etc/php5 ]; then
 
     echo Installing PHP
 
-    sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5
+    sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5 php5-cli php5-xdebug
 
 else
 
