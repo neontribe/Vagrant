@@ -61,6 +61,25 @@ if [ ! -d /etc/php5 ]; then
 
     sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5 php5-cli php5-xdebug
 
+    cat >> /etc/php5/conf.d/20-xdebug.ini << EOF
+xdebug.remote_enable=on
+xdebug.remote_handler=dbgp
+xdebug.remote_host=10.0.2.2
+xdebug.remote_port=9000
+xdebug.remote_log="/var/log/xdebug.log"
+
+; xdebug.collect_params=4
+; xdebug.var_display_max_depth=999
+; xdebug.dump.POST=*
+; xdebug.dump.GET=*
+; xdebug.show_local_vars=1 
+
+; xdebug.profiler_enable = 1
+; xdebug.profiler_output_dir = /tmp
+
+xdebug.max_nesting_level=250
+EOF
+
 else
 
     echo PHP already installed
