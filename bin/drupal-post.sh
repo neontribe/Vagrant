@@ -27,8 +27,8 @@ drush -r $DRUPAL_TARG -y up
 # clean up passwd file
 if [ -f $DRUPAL_PASS_FILE ]; then
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    echo -n ">> Drupal Admin Password is"
-    cat $DRUPAL_ADMIN_FILE
+    echo -n ">> Drupal Admin Password is "
+    cat $DRUPAL_PASS_FILE
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 fi
 

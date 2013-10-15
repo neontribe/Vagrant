@@ -29,8 +29,8 @@ if [ ! -f /usr/bin/drush ]; then
 fi
 
 echo Checking checking for drupal database
-dbcheck=`mysql -u root -pvagrant --skip-column-names -s -e "show dataBASES LIKE 'drupal'"`
-# if [ -z $dbcheck ]; then
+dbcheck=`mysql -u root -pvagrant --skip-column-names -s -e "show dataBASES LIKE '$DRUPAL_DB_NAME'"`
+if [ -z $dbcheck ]; then
 set -x
     echo "  Creating user and database"
     mysql -uroot -p$MYSQL_ROOTPASS -e "CREATE DATABASE $DRUPAL_DB_NAME"
@@ -43,4 +43,4 @@ set -x
     echo "GRANT ALL ON drupal.* TO $DRUPAL_DB_USER@localhost" | mysql -uroot -p$MYSQL_ROOTPASS
     echo "FLUSH PRIVILEGES" | mysql -uroot -p$MYSQL_ROOTPASS
 set +x
-# fi
+fi

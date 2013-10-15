@@ -12,6 +12,12 @@ if [ 1 == "$?" ]; then
     sudo apt-get install -y screen
 fi
 
+which ccze > /dev/null
+if [ 1 == "$?" ]; then
+    echo Installing ccze
+    sudo apt-get install -y ccze
+fi
+
 if [ ! -f /etc/dictionaries-common/words ]; then
     echo Installing ispell to pull in wordlists
     sudo apt-get install -y wbritish-small
