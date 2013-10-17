@@ -6,7 +6,7 @@ if [ -z "$MYSQL_ROOTPASS" ]; then
     source $CWD/../etc/lamp.inc
 fi
 
-if [ -z "$MYSQL_ROOTPASS" ]; then
+if [ -z "$DRUPAL_TARG" ]; then
     source $CWD/../etc/drupal.inc
 fi
 
@@ -21,7 +21,7 @@ if [ ! -d $DRUPAL_TARG ]; then
     sudo /usr/bin/drush -y dl --destination=`dirname $DRUPAL_TARG`
     sudo mv `dirname $DRUPAL_TARG`/drupal-* $DRUPAL_TARG
     echo "Configuring drupal"
-    echo sudo drush -y --root=$DRUPAL_TARG site-install standard \
+    sudo drush -y --root=$DRUPAL_TARG site-install standard \
         --db-url=mysql://$DRUPAL_DB_USER:$DRUPAL_DB_PASS@localhost/$DRUPAL_DB_NAME \
         --site-name="$DRUPAL_SITE_NAME" \
         --account-name=$DRUPAL_ADMIN_NAME \
