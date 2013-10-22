@@ -59,7 +59,7 @@ if [ ! -d /etc/php5 ]; then
 
     echo Installing PHP
 
-    sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5 php5-cli php5-xdebug
+    sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5 php5-cli php5-xdebug php-apc
 
     cat >> /etc/php5/conf.d/20-xdebug.ini << EOF
 xdebug.remote_enable=on
@@ -85,6 +85,25 @@ else
     echo PHP already installed
 
 fi
+
+pear config-set auto_discover 1
+pear channel-discover pear.phpunit.de
+
+which phpcs > /dev/null
+if [ 1 == "$?" ]; then
+    pear install --alldeps PHP_CodeSniffer-1.2.0
+fi
+
+which phpcb > /dev/null
+if [ 1 == "$?" ]; then
+    pear install --alldeps phpunit/PHP_CodeBrowser
+fi
+
+which phpdox > /dev/null
+if [ 1 == "$?" ]; then
+    pear install pear.netpirates.net/phpDox-0.4.0
+fi
+
 
 # PHP My Admin
 if [ ! -f /etc/phpmyadmin/config.inc.php ]; then
