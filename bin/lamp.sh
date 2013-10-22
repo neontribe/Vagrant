@@ -104,6 +104,11 @@ if [ 1 == "$?" ]; then
     pear install pear.netpirates.net/phpDox-0.4.0
 fi
 
+which phpunit > /dev/null
+if [ 1 == "$?" ]; then
+    pear install pear.phpunit.de/PHPUnit
+fi
+
 
 # PHP My Admin
 if [ ! -f /etc/phpmyadmin/config.inc.php ]; then
