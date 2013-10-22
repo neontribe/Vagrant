@@ -59,7 +59,7 @@ if [ ! -d /etc/php5 ]; then
 
     echo Installing PHP
 
-    sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5 php5-cli php5-xdebug php-apc
+    sudo apt-get -y install php5-mysql php5 php5-curl php-pear php5-cli curl php5-sqlite php5-xdebug php-apc libapache2-mod-php5 php5-cli php5-xdebug php-apc php5-xsl
 
     cat >> /etc/php5/conf.d/20-xdebug.ini << EOF
 xdebug.remote_enable=on
@@ -108,7 +108,6 @@ which phpunit > /dev/null
 if [ 1 == "$?" ]; then
     pear install pear.phpunit.de/PHPUnit
 fi
-
 
 # PHP My Admin
 if [ ! -f /etc/phpmyadmin/config.inc.php ]; then
