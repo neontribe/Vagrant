@@ -7,7 +7,7 @@ export DRUPAL_DB_NAME=drupal
 export DRUPAL_SITE_NAME="Vagrant Drupal"
 export DRUPAL_ADMIN_NAME=superadmin
 export DRUPAL_TARG=/vagrant/drupal
-export DRUPAL_PASS_FILE=/tmp/.drupal_admin_password
+export DRUPAL_PASS_FILE=$HOME/.drupal_admin_password
 
 if [ "$DRUPAL_ADMIN_PASS" == "" ]; then
     if [ -f $DRUPAL_PASS_FILE ]; then
