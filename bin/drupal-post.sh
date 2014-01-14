@@ -24,12 +24,14 @@ fi
 
 drush -r $DRUPAL_TARG -y up
 
-# clean up passwd file
-if [ -f $DRUPAL_PASS_FILE ]; then
-    echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    echo -n ">> Drupal Admin Password is "
-    cat $DRUPAL_PASS_FILE
-    echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+if [ "$1" != "SKIP_PASSEORD" ]; then
+    # clean up passwd file
+    if [ -f $DRUPAL_PASS_FILE ]; then
+        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        echo -n ">> Drupal Admin Password is "
+        cat $DRUPAL_PASS_FILE
+        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    fi
 fi
 
 rm $DRUPAL_PASS_FILE

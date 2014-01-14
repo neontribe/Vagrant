@@ -14,9 +14,6 @@ if [ "$DRUPAL_ADMIN_PASS" == "" ]; then
         export DRUPAL_ADMIN_PASS=`cat $DRUPAL_PASS_FILE`
     else
         DRUPAL_ADMIN_PASS=$(cat /usr/share/dict/words |grep -v "'"|shuf -n1 | tr '[A-Z]' '[a-z]')
-        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        echo ">> Drupal Admin Password is $DRUPAL_ADMIN_PASS"
-        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
         echo $DRUPAL_ADMIN_PASS>$DRUPAL_PASS_FILE
         export DRUPAL_ADMIN_PASS
     fi
