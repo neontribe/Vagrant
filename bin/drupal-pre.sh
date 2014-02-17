@@ -18,7 +18,7 @@ if [ ! -f /usr/bin/pear ]; then
 
 fi
 
-if [ ! -f /usr/bin/drush ]; then
+if [ ! -f $HOME/.composer/vendor/bin/drush ]; then
 
     echo Installing drush
 
