@@ -22,9 +22,10 @@ if [ ! -f /usr/bin/drush ]; then
 
     echo Installing drush
 
-    sudo pear channel-discover pear.drush.org
-    sudo pear install drush/drush
-    sudo drush > /dev/null
+    curl -sS https://getcomposer.org/installer | php
+    sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
+    source $HOME/.bashrc
+    ./composer.phar global require drush/drush:dev-master --prefer-source
 
 fi
 
