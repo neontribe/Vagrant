@@ -26,6 +26,7 @@ if [ ! -f $HOME/.composer/vendor/bin/drush ]; then
     sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
     source $HOME/.bashrc
     ./composer.phar global require drush/drush:dev-master --prefer-source
+    drush version
 
 fi
 
